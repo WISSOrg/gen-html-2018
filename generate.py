@@ -7,8 +7,8 @@ html = '<div class="member-container">\n'
 
 for row in member_list:
 	item_html = ''
-	web_html  = '<a target="_blank" href="' + row[3] + '">[icon name="external-link" unprefixed_class="member-name-icon"]</i></a>'
-	tw_html   = '<a href="https://twitter.com/' + row[4] + '" target="_blank">[icon name="twitter" unprefixed_class="member-name-icon"]</a>'
+	web_html  = '<a target="_blank" href="' + row[3] + '">[icon name="external-link" unprefixed_class="member-name-icon"]</i></a>' if len(row[3]) != 0 else ''
+	tw_html   = '<a href="https://twitter.com/' + row[4] + '" target="_blank">[icon name="twitter" unprefixed_class="member-name-icon"]</a>' if len(row[4]) != 0 else ''
 	# Generate an item DIV element
 	item_html += '<div class="item">'
 	item_html += '<img src="http://www.wiss.org/WISS2018/wp-content/uploads/' + row[5] + '-300x300.jpg" class="portrait aligncenter size-medium" />'
