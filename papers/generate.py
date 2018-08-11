@@ -41,15 +41,31 @@ def gen_container_html(file_name, abstract, review_comment, postpone):
 	html += '</div>'
 	return html
 
-html = ''
+session_list = [
+	'造形 [1日目 15:40–16:35]',
+	'支援 [1日目 16:50–17:50]',
+	'映像 [2日目 09:00–10:05]',
+	'操作 [2日目 15:20–16:25]',
+	'探索 [2日目 16:40–17:35]',
+]
 
+html = ''
+session_id = 0
+first_row_skipped = False
 for row in paper_list:
-	item_html = '<div class="talk">'
+	if not first_row_skipped:
+		first_row_skipped = True
+		continue
+	item_html = ''
+	if session_id != int(row[1]):
+		session_id = int(row[1])
+		item_html += '### セッション' + str(session_id) + '：' + session_list[session_id - 1] + '\n\n'
+	item_html += '<div class="talk">'
 	item_html += gen_title_html(row[3], row[0], len(row[7]) != 0, len(row[8]) != 0)
 	item_html += gen_authors_html(row[4])
 	item_html += gen_container_html(row[9], row[5], row[6], len(row[8]) != 0)
 	item_html += '</div>'
-	html += item_html + '\n<hr />\n'
+	html += item_html + '\n<hr />\n\n'
 
 csv_file.close()
 
