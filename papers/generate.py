@@ -49,6 +49,14 @@ session_list = [
 	'探索 [2日目 16:40–17:35]',
 ]
 
+chairs_list = [
+	'座長：小山 裕己，チャット座長：益子 宗',
+	'座長：阪口 紗季，チャット座長：大坪 五郎',
+	'座長：五十嵐 悠紀，チャット座長：伊藤 正彦',
+	'座長：杉浦 裕太，チャット座長：真鍋 宏幸',
+	'座長：樋口 啓太，チャット座長：宮下 芳明',
+]
+
 html = ''
 session_id = 0
 first_row_skipped = False
@@ -59,7 +67,8 @@ for row in paper_list:
 	item_html = ''
 	if session_id != int(row[1]):
 		session_id = int(row[1])
-		item_html += '### セッション' + str(session_id) + '：' + session_list[session_id - 1] + '\n\n'
+		item_html += '### セッション' + str(session_id) + '：' + session_list[session_id - 1] + '\n'
+		item_html += '<span class="session-chairs">' + chairs_list[session_id - 1] + '</span>\n\n'
 	item_html += '<div class="talk">'
 	item_html += gen_title_html(row[3], row[0], len(row[7]) != 0, len(row[8]) != 0)
 	item_html += gen_authors_html(row[4])
